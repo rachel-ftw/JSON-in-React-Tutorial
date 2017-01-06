@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
 import blogData from '../blog_data'
+import BlogCard from './BlogCard'
 
-class App extends Component {
+export default class App extends Component {
   render() {
-    console.log('blog data ====', blogData.blogData)
-    let theBlogData = blogData.blogData
-    const blogs = theBlogData.map(blog => <li>{blog.title}</li>)
-    return <div>
-    <p>So many blogs</p>
-      <ul>{blogs}</ul>
-    </div>
+    const blogsRaw = blogData.blogData
+    const blogComponents = blogsRaw.map(blog => 
+        <BlogCard key={blog.id} blog={blog} />
+      )
+
+    return (
+      <div>
+        <h1>Blog Posts</h1>
+        <div>{blogComponents}</div>
+      </div>
+    )
   }
 }
 
-export default App;
